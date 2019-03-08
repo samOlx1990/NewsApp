@@ -1,28 +1,92 @@
 apply plugin: 'com.android.application'
 
+ext.versions = [
+    minSdk        : 16,
+    compileSdk    : 27,
+    autoValue     : '1.5.2',
+    dagger        : '2.12',
+    supportLib    : '27.1.1',
+    playServices  : '11.6.0',
+    retrofit      : '2.3.0',
+    okHttp        : '3.9.1',
+    autoValueMoshi: '7423eba2bf',
+    butterknife   : '8.8.1',
+]
+
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.wolf.sambuddhadhar.newsapp"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  compileSdkVersion 28
+  defaultConfig {
+    applicationId "com.wolf.sambuddhadhar.newsapp"
+    minSdkVersion versions.minSdk
+    targetSdkVersion 28
+    multiDexEnabled true
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
+  compileOptions {
+    targetCompatibility 1.8
+    sourceCompatibility 1.8
+  }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+  testImplementation files("libs/mockable-android-26.default-values.v3.jar")
+
+  testImplementation(
+      'junit:junit:4.12',
+      'org.mockito:mockito-core:2.11.0',
+  )
+
+  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+  androidTestImplementation('com.android.support.test:runner:1.0.1', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+
+  compileOnly(
+      "com.ryanharter.auto.value:auto-value-moshi-annotations:0.4.5",
+  )
+
+  annotationProcessor 'com.ryanharter.auto.value:auto-value-moshi:0.4.5'
+
+  annotationProcessor(
+      "com.google.auto.value:auto-value:$versions.autoValue",
+      "com.google.dagger:dagger-compiler:$versions.dagger",
+      "com.ryanharter.auto.value:auto-value-parcel:0.2.6",
+      "com.jakewharton:butterknife-compiler:$versions.butterknife",
+  )
+  implementation(
+      'io.reactivex.rxjava2:rxjava:2.1.9',
+      'io.reactivex.rxjava2:rxandroid:2.0.1',
+      'com.jakewharton.timber:timber:4.7.0',
+      "com.jakewharton:butterknife:$versions.butterknife",
+      "com.google.dagger:dagger:$versions.dagger",
+      "com.squareup.retrofit2:retrofit:$versions.retrofit",
+      "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+      "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+      "com.squareup.okhttp3:okhttp:$versions.okHttp",
+      "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+      "com.android.support:appcompat-v7:$versions.supportLib",
+      "com.android.support:design:$versions.supportLib",
+      'com.squareup.moshi:moshi:1.5.0',
+      'com.serjltt.moshi:moshi-lazy-adapters:2.1',
+      'com.facebook.stetho:stetho:1.2.0',
+      'com.jakewharton.rxbinding2:rxbinding:2.1.0',
+      'com.squareup.moshi:moshi:1.5.0',
+      "com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.6",
+      "com.google.auto.value:auto-value:$versions.autoValue",
+      "com.google.android.gms:play-services:$versions.playServices",
+      'com.android.support:multidex:1.0.1',
+      "com.squareup.picasso:picasso:2.71828",
+  )
 }
