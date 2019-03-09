@@ -33,7 +33,7 @@ public abstract class NetworkModule {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .validateEagerly(true)
         .client(client)
-        .baseUrl("")
+        .baseUrl("https://newsapi.org/")
         .build();
   }
 }
