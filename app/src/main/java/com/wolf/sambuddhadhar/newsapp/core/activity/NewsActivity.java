@@ -8,6 +8,7 @@ import com.wolf.sambuddhadhar.newsapp.application.NewsApplication;
 import com.wolf.sambuddhadhar.newsapp.core.util.ScreenKey;
 import com.wolf.sambuddhadhar.newsapp.core.util.ScreenRouter;
 import com.wolf.sambuddhadhar.newsapp.util.Event;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
 import javax.inject.Inject;
 
@@ -19,6 +20,7 @@ public class NewsActivity extends AppCompatActivity implements ActivityUi{
 
   @Inject ScreenRouter screenRouter;
   @Inject ActivityPresenter presenter;
+  private Disposable disposable;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class NewsActivity extends AppCompatActivity implements ActivityUi{
     activityComponent.inject(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_news);
-    activityUiEvents
+    disposable = activityUiEvents
         .compose(presenter)
         .subscribe(ui -> ui.act(this));
     activityUiEvents.onNext(ActivityCreateEvent.create());
@@ -61,4 +63,9 @@ public class NewsActivity extends AppCompatActivity implements ActivityUi{
     activityUiEvents.onNext(event);
   }
 
+  @Override
+  protected void onDestroy() {
+    disposable.dispose();
+    super.onDestroy();
+  }
 }

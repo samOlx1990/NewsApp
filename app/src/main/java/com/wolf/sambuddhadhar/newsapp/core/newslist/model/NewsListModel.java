@@ -5,13 +5,15 @@ import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import java.util.List;
+import javax.annotation.Nullable;
 
 @AutoValue
 public abstract class NewsListModel {
 
   @Json(name = "status")
-  abstract String status();
+  public abstract String status();
 
+  @Nullable
   @Json(name = "articles")
   public abstract List<Articles> articles();
 

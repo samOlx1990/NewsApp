@@ -4,16 +4,20 @@ import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import javax.annotation.Nullable;
 
 @AutoValue
 public abstract class Articles {
 
+  @Nullable
   @Json(name = "title")
   public abstract String title();
 
+  @Nullable
   @Json(name = "url")
   public abstract String url();
 
+  @Nullable
   @Json(name = "urlToImage")
   public abstract String imageUrl();
 

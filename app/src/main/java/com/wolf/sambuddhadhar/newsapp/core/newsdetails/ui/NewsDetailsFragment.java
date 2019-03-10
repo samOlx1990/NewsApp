@@ -25,6 +25,7 @@ import com.wolf.sambuddhadhar.newsapp.core.newsdetails.events.DetailsFragmentCre
 import com.wolf.sambuddhadhar.newsapp.core.newsdetails.presenter.NewsDetailsPresenter;
 import com.wolf.sambuddhadhar.newsapp.util.Event;
 import io.reactivex.ObservableTransformer;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
 import javax.inject.Inject;
 
@@ -45,6 +46,7 @@ public class NewsDetailsFragment extends Fragment implements NewsDetailsUi{
   @Inject NewsDetailsPresenter newsDetailsPresenter;
 
   PublishSubject<Event> uiEvents = PublishSubject.create();
+  private Disposable disposable;
 
   public NewsDetailsFragment() {
     // Required empty public constructor
@@ -76,7 +78,7 @@ public class NewsDetailsFragment extends Fragment implements NewsDetailsUi{
     View view = inflater.inflate(R.layout.fragment_news_details, container, false);
     ButterKnife.bind(this, view);
     NewsActivity.activityComponent().inject(this);
-    uiEvents
+    disposable = uiEvents
         .compose(newsDetailsPresenter)
         .subscribe(ui -> ui.act(this));
     uiEvents.onNext(DetailsFragmentCreateEvent.create(getArguments().getString(KEY_URL)));
@@ -113,6 +115,12 @@ public class NewsDetailsFragment extends Fragment implements NewsDetailsUi{
       }
     });
     webView.loadUrl(url);
+  }
+
+  @Override
+  public void onDestroyView() {
+    disposable.dispose();
+    super.onDestroyView();
   }
 
   @Override

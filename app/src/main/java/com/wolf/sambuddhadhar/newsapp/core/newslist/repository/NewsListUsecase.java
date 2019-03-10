@@ -28,6 +28,10 @@ public class NewsListUsecase {
 
   @NonNull
   private NewsResult getSuccess(NewsListModel newsListModel) {
-    return NewsResult.success(newsListModel);
+    if ("ok".equalsIgnoreCase(newsListModel.status())) {
+      return NewsResult.success(newsListModel);
+    } else {
+      return NewsResult.failure();
+    }
   }
 }

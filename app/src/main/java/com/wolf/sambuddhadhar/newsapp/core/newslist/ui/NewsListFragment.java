@@ -24,6 +24,7 @@ import com.wolf.sambuddhadhar.newsapp.core.newslist.events.RetryEvent;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.model.Articles;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.presenter.NewsListPresenter;
 import com.wolf.sambuddhadhar.newsapp.util.Event;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
 import java.util.List;
 import javax.inject.Inject;
@@ -47,6 +48,7 @@ public class NewsListFragment extends Fragment implements NewsListUi {
   Unbinder unbinder;
   PublishSubject<Event> uiEvents = PublishSubject.create();
   NewsListAdapter adapter;
+  private Disposable disposable;
 
   public NewsListFragment() {
     // Required empty public constructor
@@ -78,7 +80,7 @@ public class NewsListFragment extends Fragment implements NewsListUi {
     View layout = inflater.inflate(R.layout.fragment_news_list, container, false);
     unbinder = ButterKnife.bind(this, layout);
     NewsActivity.activityComponent().inject(this);
-    uiEvents
+    disposable = uiEvents
         .compose(presenter)
         .subscribe(ui -> ui.act(this));
     initViews();
@@ -146,5 +148,11 @@ public class NewsListFragment extends Fragment implements NewsListUi {
     if (refreshLayout.isRefreshing()) {
       refreshLayout.setRefreshing(false);
     }
+  }
+
+  @Override
+  public void onDestroyView() {
+    disposable.dispose();
+    super.onDestroyView();
   }
 }
