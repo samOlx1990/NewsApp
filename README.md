@@ -1,4 +1,4 @@
-# Weather APP
+# News APP
 
 ## About:
  A simple android application that fetches today's top news headlines.
