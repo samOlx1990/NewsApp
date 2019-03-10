@@ -5,13 +5,14 @@ import com.squareup.moshi.Moshi;
 import com.wolf.sambuddhadhar.newsapp.application.ApplicationComponent.ApplicationScope;
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
 public abstract class AdapterModule {
 
-  @Binds
+  @Provides
   @ApplicationScope
-  public static Moshi provideMoshi() {
+  public  static   Moshi provideMoshi() {
     return new Moshi.Builder()
         .add(AutoValueMoshiAdapterFactory.create())
         .add(FallbackEnum.ADAPTER_FACTORY)

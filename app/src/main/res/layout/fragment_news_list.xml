@@ -1,14 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".core.newslist.ui.NewsListFragment">
+  android:id="@+id/refresh">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <android.support.design.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/hello_blank_fragment" />
+    android:layout_height="match_parent">
 
-</FrameLayout>
+    <android.support.design.widget.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:fitsSystemWindows="true"
+      android:theme="@style/AppTheme">
+
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/news_list_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:title="@string/toolbar_title"
+        app:titleTextColor="@color/colorAccent">
+
+      </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/news_list_holder"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="@dimen/item_offset"
+      android:scrollbars="vertical"
+      android:scrollbarThumbVertical="@color/colorPrimaryDark"
+      android:clipToPadding="false"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+      android:id="@+id/layout_retry"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:visibility="gone">
+      <ImageView
+        android:id="@+id/retry_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_rotate"
+        android:textColor="@color/colorPrimary" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/retry_icon"
+        android:layout_gravity="center"
+        android:text="Retry"
+        android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ProgressBar
+      android:id="@+id/loader"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:indeterminate="true"
+      android:theme="@style/RedAccent"
+      android:visibility="gone" />
+  </android.support.design.widget.CoordinatorLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

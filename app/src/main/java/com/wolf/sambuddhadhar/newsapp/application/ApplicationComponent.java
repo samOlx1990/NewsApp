@@ -6,6 +6,7 @@ import android.app.Application;
 import com.wolf.sambuddhadhar.newsapp.application.ApplicationComponent.ApplicationScope;
 import com.wolf.sambuddhadhar.newsapp.core.activity.NewsActivityComponent;
 import com.wolf.sambuddhadhar.newsapp.framework.adapter.AdapterModule;
+import com.wolf.sambuddhadhar.newsapp.framework.network.NetworkModule;
 import dagger.BindsInstance;
 import dagger.Component;
 import java.lang.annotation.Retention;
@@ -13,7 +14,8 @@ import javax.inject.Scope;
 
 @ApplicationScope
 @Component(modules = {AppModule.class,
-    AdapterModule.class})
+    AdapterModule.class,
+    NetworkModule.class})
 public interface ApplicationComponent {
 
 

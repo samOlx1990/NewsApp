@@ -7,11 +7,11 @@ import com.wolf.sambuddhadhar.newsapp.core.newsdetails.ui.NewsDetailsFragment;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.ui.NewsListFragment;
 import javax.inject.Inject;
 
+@ActivityScope
 public class ScreenRouter {
 
   private final FragmentManager fragmentManager;
 
-  @ActivityScope
   @Inject
   public ScreenRouter(FragmentManager fragmentManager) {
     this.fragmentManager = fragmentManager;

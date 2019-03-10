@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="item_offset">8dp</dimen>
+  <dimen name="thumb_width">60dp</dimen>
+  <dimen name="thumb_height">60dp</dimen>
+  <dimen name="thumb_margin_left">8dp</dimen>
+  <dimen name="thumb_margin_bottom">16dp</dimen>
+  <dimen name="thumb_margin_top">16dp</dimen>
+  <dimen name="text_size_medium">16sp</dimen>
+</resources>

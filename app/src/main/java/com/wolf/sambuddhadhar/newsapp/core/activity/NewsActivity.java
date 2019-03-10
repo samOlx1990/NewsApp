@@ -2,6 +2,7 @@ package com.wolf.sambuddhadhar.newsapp.core.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import com.squareup.picasso.Picasso;
 import com.wolf.sambuddhadhar.newsapp.R;
 import com.wolf.sambuddhadhar.newsapp.application.NewsApplication;
 import com.wolf.sambuddhadhar.newsapp.core.util.ScreenKey;
@@ -18,13 +19,13 @@ public class NewsActivity extends AppCompatActivity implements ActivityUi{
 
   @Inject ScreenRouter screenRouter;
   @Inject ActivityPresenter presenter;
-  //faf323be6f8e41a4922abdc00a922a93
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     activityComponent = NewsApplication.component()
         .activityComponentBuilder()
         .activity(this)
+        .picasso(Picasso.get())
         .build();
     activityComponent.inject(this);
     super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class NewsActivity extends AppCompatActivity implements ActivityUi{
     activityUiEvents.onNext(BackPressEvent.create());
   }
 
-  void postEvents(Event event) {
+  public void postEvents(Event event) {
     activityUiEvents.onNext(event);
   }
 

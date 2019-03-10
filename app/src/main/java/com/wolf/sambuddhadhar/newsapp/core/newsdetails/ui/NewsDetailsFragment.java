@@ -14,7 +14,7 @@ import com.wolf.sambuddhadhar.newsapp.R;
  * Use the {@link NewsDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsDetailsFragment extends Fragment {
+public class NewsDetailsFragment extends Fragment implements NewsDetailsUi{
 
   private static final String KEY_URL = "url";
 
