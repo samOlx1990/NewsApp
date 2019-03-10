@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import com.squareup.picasso.Picasso;
 import com.wolf.sambuddhadhar.newsapp.core.activity.NewsActivityComponent.ActivityScope;
 import com.wolf.sambuddhadhar.newsapp.core.activity.NewsActivityComponent.NewsActivityModule;
+import com.wolf.sambuddhadhar.newsapp.core.newsdetails.ui.NewsDetailsFragment;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.api.NewsApiModule;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.ui.NewsListAdapter;
 import com.wolf.sambuddhadhar.newsapp.core.newslist.ui.NewsListFragment;
@@ -25,6 +26,8 @@ public interface NewsActivityComponent {
   void inject(NewsListFragment target);
 
   void inject(NewsListAdapter target);
+
+  void inject(NewsDetailsFragment target);
 
   @Scope
   @Retention(RetentionPolicy.RUNTIME)

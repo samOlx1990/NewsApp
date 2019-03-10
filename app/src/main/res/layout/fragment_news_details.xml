@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".core.newsdetails.ui.NewsDetailsFragment">
 
-  <ImageView
-    android:id="@+id/back"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/thumb_margin_top"
-    android:layout_marginLeft="@dimen/thumb_margin_top"
-    android:src="@drawable/ic_arrow_back" />
-
-  <WebView
-    android:id="@+id/webView"
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  </WebView>
+    <ImageView
+      android:id="@+id/back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <WebView
+      android:id="@+id/webView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    </WebView>
+
+    <ProgressBar
+      android:id="@+id/progress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:indeterminate="true"
+      android:theme="@style/RedAccent"
+      android:visibility="gone" />
+
+  </FrameLayout>
 
 
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -25,11 +25,13 @@ public class ScreenRouter {
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commitAllowingStateLoss();
+        fragmentManager.executePendingTransactions();
         break;
       case DETAILS:
         NewsDetailsFragment fragment1 = NewsDetailsFragment.newInstance(param);
         fragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment1)
+            .addToBackStack(null)
             .commitAllowingStateLoss();
         break;
       default:
