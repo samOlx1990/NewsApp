@@ -16,7 +16,7 @@
 MVP
 
 ## Libraries Used:
-- Rxjava
+- Rxjava2
 - Dagger2 for dependency injection
 - Butterknife for view binding
 - Retrofit and OKHTTP for networking
